@@ -1,1 +1,12 @@
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // Get the elements
+  const menuToggle = document.getElementById("menu-toggle");
+  const navbarDefault = document.getElementById("navbar-default");
+
+  // Add event listener to the button
+  menuToggle.addEventListener("click", function () {
+    // Toggle the hidden class on the menu
+    navbarDefault.classList.toggle("hidden");
+  });
+</script>

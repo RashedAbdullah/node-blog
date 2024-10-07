@@ -1,0 +1,91 @@
+<!-- Hero Section -->
+<section class="bg-blue-100 py-16">
+  <div class="container mx-auto text-center">
+    <h1 class="text-5xl font-extrabold text-gray-800">
+      Welcome to <span class="text-blue-600">BlogSite</span>
+    </h1>
+    <p class="mt-6 text-xl text-gray-700 max-w-2xl mx-auto">
+      Dive into a world of diverse blogs, offering insights into various topics,
+      from tech to travel, lifestyle to education.
+    </p>
+    <a
+      href="#blogs"
+      class="mt-8 inline-block bg-blue-600 text-white px-6 py-3 rounded-full text-lg hover:bg-blue-700 transition-colors duration-300"
+      >Explore Blogs</a
+    >
+  </div>
+</section>
+
+<!-- Categories Section -->
+<section class="py-12 bg-gray-50">
+  <div class="container mx-auto text-center">
+    <h2 class="text-3xl font-semibold text-gray-800 mb-8">
+      Explore Categories
+    </h2>
+    <div class="flex justify-center flex-wrap gap-4">
+      <a
+        href="/category/tech"
+        class="bg-white shadow-md text-gray-800 px-6 py-3 rounded-lg hover:bg-blue-100 hover:shadow-lg transition duration-300"
+        >Tech</a
+      >
+      <a
+        href="/category/lifestyle"
+        class="bg-white shadow-md text-gray-800 px-6 py-3 rounded-lg hover:bg-blue-100 hover:shadow-lg transition duration-300"
+        >Lifestyle</a
+      >
+      <a
+        href="/category/education"
+        class="bg-white shadow-md text-gray-800 px-6 py-3 rounded-lg hover:bg-blue-100 hover:shadow-lg transition duration-300"
+        >Education</a
+      >
+      <a
+        href="/category/health"
+        class="bg-white shadow-md text-gray-800 px-6 py-3 rounded-lg hover:bg-blue-100 hover:shadow-lg transition duration-300"
+        >Health</a
+      >
+      <a
+        href="/category/travel"
+        class="bg-white shadow-md text-gray-800 px-6 py-3 rounded-lg hover:bg-blue-100 hover:shadow-lg transition duration-300"
+        >Travel</a
+      >
+    </div>
+  </div>
+</section>
+
+<!-- Blog Cards Section -->
+<section id="blogs" class="py-12 bg-white">
+  <div class="container mx-auto">
+    <h2 class="text-3xl font-semibold text-gray-800 mb-12 text-center">
+      Latest Blogs
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <% blogs.forEach(function(blog) { %>
+      <!-- Blog Card -->
+      <div
+        class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+      >
+        <img
+          src="<%= blog.image %>"
+          alt="<%= blog.title %>"
+          class="w-full h-52 object-cover"
+        />
+        <div class="p-6">
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">
+            <a
+              href="/blog/<%= blog.slug %>"
+              class="hover:text-blue-600 transition-colors duration-300"
+              ><%= blog.title %></a
+            >
+          </h3>
+          <p class="text-gray-600 mb-6 line-clamp-3"><%= blog.excerpt %></p>
+          <a
+            href="/blog/<%= blog.slug %>"
+            class="text-blue-500 font-semibold hover:text-blue-600 transition duration-300"
+            >Read More</a
+          >
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
