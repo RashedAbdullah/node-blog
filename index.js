@@ -1,8 +1,14 @@
 const express = require("express");
 const path = require("path");
+const { userRouter } = require("./routes/user-router");
+const { default: mongoose } = require("mongoose");
 
 const app = express();
 const PORT = 3000;
+
+mongoose
+  .connect("mongodb://localhost:27017/node-blog")
+  .then(() => console.log("MongoDB Connected"));
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
@@ -37,6 +43,8 @@ app.get("/", (req, res) => {
   ];
   return res.render("index", { blogs });
 });
+
+app.use("/user", userRouter);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
