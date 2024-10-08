@@ -1,0 +1,56 @@
+<div class="container mx-auto py-10">
+  <h1 class="text-3xl font-bold mb-8 text-center">Create a New Blog</h1>
+  <form
+    action="/blogs"
+    method="POST"
+    enctype="multipart/form-data"
+    class="max-w-xl mx-auto bg-white p-8 shadow-md rounded"
+  >
+    <div class="mb-6">
+      <label for="title" class="block mb-2 text-sm font-medium text-gray-700"
+        >Blog Title</label
+      >
+      <input
+        type="text"
+        id="title"
+        name="title"
+        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+        required
+      />
+    </div>
+
+    <div class="mb-6">
+      <label for="body" class="block mb-2 text-sm font-medium text-gray-700"
+        >Blog Body</label
+      >
+      <textarea
+        id="body"
+        name="body"
+        rows="6"
+        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+        required
+      ></textarea>
+    </div>
+
+    <div class="mb-6">
+      <label for="cover" class="block mb-2 text-sm font-medium text-gray-700"
+        >Cover Image URL</label
+      >
+      <input
+        type="text"
+        id="cover"
+        name="cover"
+        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+      />
+    </div>
+
+    <div class="mb-6">
+      <button
+        type="submit"
+        class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300"
+      >
+        Submit Blog
+      </button>
+    </div>
+  </form>
+</div>
