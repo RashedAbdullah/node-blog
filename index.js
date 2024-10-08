@@ -2,6 +2,8 @@ const express = require("express");
 const path = require("path");
 const { userRouter } = require("./routes/user-router");
 const { default: mongoose } = require("mongoose");
+const cookieParser = require("cookie-parser");
+const { checkForAuthenticationCookie } = require("./middlewares/middle-auth");
 
 const app = express();
 const PORT = 3000;
@@ -13,6 +15,8 @@ mongoose
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(checkForAuthenticationCookie("token"));
 
 app.get("/", (req, res) => {
   const blogs = [
@@ -41,7 +45,7 @@ app.get("/", (req, res) => {
         "https://builtin.com/sites/www.builtin.com/files/2022-07/future-artificial-intelligence.png",
     },
   ];
-  return res.render("index", { blogs });
+  return res.render("index", { blogs, user: req.user });
 });
 
 app.use("/user", userRouter);

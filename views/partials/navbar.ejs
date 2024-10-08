@@ -1,71 +1,119 @@
-<nav class="bg-white border-b border-gray-200 px-4 py-2.5">
-  <div class="container mx-auto flex flex-wrap items-center justify-between">
-    <a href="/" class="text-xl font-semibold">BlogSite</a>
+<nav class="bg-gray-100">
+  <div class="bg-white border-b border-gray-200 px-4 py-2.5">
+    <div class="container mx-auto flex flex-wrap items-center justify-between">
+      <a href="/" class="text-xl font-semibold">BlogSite</a>
 
-    <!-- Mobile Menu Button -->
-    <button
-      id="menu-toggle"
-      data-collapse-toggle="navbar-default"
-      type="button"
-      class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-      aria-controls="navbar-default"
-      aria-expanded="false"
-    >
-      <span class="sr-only">Open main menu</span>
-      <svg
-        class="w-6 h-6"
-        aria-hidden="true"
-        fill="currentColor"
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
+      <!-- Mobile Menu Button -->
+      <button
+        id="menu-toggle"
+        data-collapse-toggle="navbar-default"
+        type="button"
+        class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+        aria-controls="navbar-default"
+        aria-expanded="false"
       >
-        <path
-          fill-rule="evenodd"
-          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-          clip-rule="evenodd"
-        ></path>
-      </svg>
-    </button>
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="w-6 h-6"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </button>
 
-    <!-- Menu Items -->
-    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-      <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0">
-        <li>
-          <a
-            href="/"
-            class="block py-2 pr-4 pl-3 text-gray-700 hover:text-blue-700"
-            >Home</a
-          >
-        </li>
-        <li>
-          <a
-            href="/about"
-            class="block py-2 pr-4 pl-3 text-gray-700 hover:text-blue-700"
-            >About</a
-          >
-        </li>
-        <li>
-          <a
-            href="/blogs"
-            class="block py-2 pr-4 pl-3 text-gray-700 hover:text-blue-700"
-            >Blogs</a
-          >
-        </li>
-        <li>
-          <a
-            href="/contact"
-            class="block py-2 pr-4 pl-3 text-gray-700 hover:text-blue-700"
-            >Contact</a
-          >
-        </li>
-        <li>
-          <a
-            href="/user/signin"
-            class="block py-2 pr-4 pl-3 text-gray-700 hover:text-blue-700"
-            >Sign in</a
-          >
-        </li>
-      </ul>
+      <!-- Menu Items -->
+      <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+        <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0">
+          <li>
+            <a
+              href="/"
+              class="block py-2 pr-4 pl-3 text-gray-700 hover:text-blue-700"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="/about"
+              class="block py-2 pr-4 pl-3 text-gray-700 hover:text-blue-700"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="/blogs"
+              class="block py-2 pr-4 pl-3 text-gray-700 hover:text-blue-700"
+              >Blogs</a
+            >
+          </li>
+          <li>
+            <a
+              href="/contact"
+              class="block py-2 pr-4 pl-3 text-gray-700 hover:text-blue-700"
+              >Contact</a
+            >
+          </li>
+          <% if (locals.user) { %>
+          <li>
+            <a
+              href="/add-blog"
+              class="block py-2 pr-4 pl-3 text-gray-700 hover:text-blue-700"
+              >Add Blog</a
+            >
+          </li>
+          <li>
+            <p
+              class="block py-2 pr-4 pl-3 text-gray-900 hover:text-blue-700 font-semibold"
+            >
+              <%= locals.user.name %>
+            </p>
+          </li>
+          <li>
+            <a
+              href="/user/signout"
+              class="block py-2 pr-4 pl-3 text-red-500 hover:text-blue-700"
+              >Sign out</a
+            >
+          </li>
+          <% }%> <% if (!locals.user) { %>
+          <li>
+            <a
+              href="/user/signin"
+              class="block py-2 pr-4 pl-3 text-gray-700 hover:text-blue-700"
+              >Sign in</a
+            >
+          </li>
+          <% }%>
+        </ul>
+      </div>
     </div>
   </div>
+
+  <!-- Alert -->
+  <% if (locals.err) { %>
+  <div
+    class="flex items-center p-4 my-4 mx-20 text-sm text-red-800 rounded-lg bg-red-200 container mx-auto"
+    role="alert"
+  >
+    <svg
+      class="flex-shrink-0 inline w-4 h-4 me-3"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+    >
+      <path
+        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+      />
+    </svg>
+    <span class="sr-only">Info</span>
+    <div><span class="font-medium">Error!</span> <%= locals.err %></div>
+  </div>
+  <% } %>
 </nav>
