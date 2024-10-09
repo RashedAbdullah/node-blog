@@ -14,11 +14,18 @@
         <h1 class="text-4xl font-bold mb-4 text-gray-800"><%= blog.title %></h1>
 
         <!-- Blog Metadata -->
-        <p class="text-gray-500 text-sm mb-4">
-          Posted on <%= new Date(blog.createdAt).toLocaleDateString() %> by <%=
-          blog.createdBy.fullName %>
-        </p>
 
+        <div class="text-gray-500 text-sm flex items-center my-2">
+          <p>
+            Posted on <%= new Date(blog.createdAt).toLocaleDateString() %> by
+          </p>
+          <img
+            class="h-8 w-8"
+            src="<%= blog.createdBy.avatar %>"
+            alt="<%= blog.createdBy.fullName %>"
+          />
+          <p><%= blog.createdBy.fullName %></p>
+        </div>
         <!-- Blog Cover Image -->
         <% if (blog.cover) { %>
         <img
@@ -29,7 +36,9 @@
         <% } %>
 
         <!-- Blog Body -->
-        <div class="prose lg:prose-xl"><pre class="text-wrap"><%= blog.body %></pre></div>
+        <div class="prose lg:prose-xl">
+          <pre class="text-wrap"><%= blog.body %></pre>
+        </div>
 
         <!-- Blog Footer -->
         <div class="mt-10">
