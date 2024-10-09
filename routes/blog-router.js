@@ -3,6 +3,7 @@ const { blogModel } = require("../models/blog-model");
 const multer = require("multer");
 const path = require("path");
 const { userModel } = require("../models/user-model");
+const { commentModel } = require("../models/comment-model");
 
 const blogRouter = Router();
 
@@ -39,13 +40,31 @@ blogRouter.get("/:slug", async (req, res) => {
       model: userModel,
     });
 
-  return res.render("single-blog", { blog: singleBlog });
+  const comments = await commentModel.find({
+    blogId: singleBlog._id.toString(),
+  });
+
+  return res.render("single-blog", {
+    blog: singleBlog,
+    user: req.user,
+    comments,
+  });
 });
 
 blogRouter.get("/add/new-blog", (req, res) => {
   return res.render("add-blog", {
     user: req.user,
   });
+});
+
+blogRouter.post("/add/comment", async (req, res) => {
+  await commentModel.create({
+    content: req.body.content,
+    blogId: req.params.blogId,
+    createdBy: req.user._id,
+  });
+
+  return res.redirect(`/${req.params.slug}`);
 });
 
 module.exports = { blogRouter };
