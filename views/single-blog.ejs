@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <%- include("partials/head") %>
+    <title><%= blog.title %></title>
+  </head>
+
+  <body class="bg-gray-100">
+    <%- include('partials/navbar') %>
+    <!-- Single blog -->
+    <div class="container mx-auto py-10">
+      <div class="max-w-4xl mx-auto bg-white p-8 shadow-lg rounded-lg">
+        <!-- Blog Title -->
+        <h1 class="text-4xl font-bold mb-4 text-gray-800"><%= blog.title %></h1>
+
+        <!-- Blog Metadata -->
+        <p class="text-gray-500 text-sm mb-4">
+          Posted on <%= new Date(blog.createdAt).toLocaleDateString() %> by <%=
+          blog.createdBy.fullName %>
+        </p>
+
+        <!-- Blog Cover Image -->
+        <% if (blog.cover) { %>
+        <img
+          src="<%= blog.cover %>"
+          alt="<%= blog.title %>"
+          class="w-full object-cover rounded-lg mb-6"
+        />
+        <% } %>
+
+        <!-- Blog Body -->
+        <div class="prose lg:prose-xl"><pre class="text-wrap"><%= blog.body %></pre></div>
+
+        <!-- Blog Footer -->
+        <div class="mt-10">
+          <a href="/" class="text-blue-600 hover:underline"
+            >← Back to all blogs</a
+          >
+        </div>
+      </div>
+    </div>
+    <%- include("partials/footer") %> <%- include("partials/script") %>
+  </body>
+</html>

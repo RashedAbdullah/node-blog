@@ -4,6 +4,8 @@ const { userRouter } = require("./routes/user-router");
 const { default: mongoose } = require("mongoose");
 const cookieParser = require("cookie-parser");
 const { checkForAuthenticationCookie } = require("./middlewares/middle-auth");
+const { blogRouter } = require("./routes/blog-router");
+const { blogModel } = require("./models/blog-model");
 
 const app = express();
 const PORT = 3000;
@@ -17,38 +19,15 @@ app.set("views", path.resolve("./views"));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token"));
+app.use(express.static(path.resolve("./public")));
 
-app.get("/", (req, res) => {
-  const blogs = [
-    {
-      title: "Understanding JavaScript Closures",
-      slug: "understanding-javascript-closures",
-      excerpt:
-        "JavaScript closures are a fundamental concept that every JavaScript developer should understand...",
-      image:
-        "https://bloggingfordevs.com/images/trends-images/javascript-blogs.png",
-    },
-    {
-      title: "10 Tips for a Healthier Lifestyle",
-      slug: "10-tips-healthier-lifestyle",
-      excerpt:
-        "Living a healthier lifestyle doesn’t have to be complicated. Here are 10 easy tips to get you started...",
-      image:
-        "https://oncquest-blog.s3.ap-south-1.amazonaws.com/blog/wp-content/uploads/2023/07/12043920/a.jpg",
-    },
-    {
-      title: "The Future of Tech: AI and Machine Learning",
-      slug: "future-tech-ai-machine-learning",
-      excerpt:
-        "Artificial Intelligence and Machine Learning are transforming the way we live and work...",
-      image:
-        "https://builtin.com/sites/www.builtin.com/files/2022-07/future-artificial-intelligence.png",
-    },
-  ];
+app.get("/", async (req, res) => {
+  const blogs = await blogModel.find({});
   return res.render("index", { blogs, user: req.user });
 });
 
 app.use("/user", userRouter);
+app.use("/blogs", blogRouter);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

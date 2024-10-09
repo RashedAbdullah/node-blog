@@ -65,21 +65,21 @@
         class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105"
       >
         <img
-          src="<%= blog.image %>"
+          src="<%= blog.cover %>"
           alt="<%= blog.title %>"
           class="w-full h-52 object-cover"
         />
         <div class="p-6">
           <h3 class="text-2xl font-bold text-gray-800 mb-2">
             <a
-              href="/blog/<%= blog.slug %>"
+              href="/blogs/<%= blog.slug %>"
               class="hover:text-blue-600 transition-colors duration-300"
               ><%= blog.title %></a
             >
           </h3>
-          <p class="text-gray-600 mb-6 line-clamp-3"><%= blog.excerpt %></p>
+          <p class="text-gray-600 mb-6 line-clamp-3"><%= blog.body %></p>
           <a
-            href="/blog/<%= blog.slug %>"
+            href="/blogs/<%= blog.slug %>"
             class="text-blue-500 font-semibold hover:text-blue-600 transition duration-300"
             >Read More</a
           >
